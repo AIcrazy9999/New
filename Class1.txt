@@ -1,0 +1,152 @@
+1. Write a Python program to create a class and display the namespace of that class.
+class student:
+    def sub_set(self, sset):
+        return self.sub_set_rec([], sorted(sset))
+    def sub_set_rec(self, current, sset):
+        if sset:
+            return self.sub_set_rec(current, sset[1:]) + self.sub_set_rec(current+[sset[0]], sset[1:])
+        return [current]
+for name in student.__dict__:
+    print(name)
+#print(student().sub_set([4,5,6]))
+
+output:
+__module__
+sub_set
+sub_set_rec
+__dict__
+__weakref__
+__doc__
+*************************************************************************************************
+2.Write a Python program to create an instance of a specified class and display the namespace of the said instance.
+class Student:
+    def __init__(self, student_id, student_name, student_class):
+        self.student_id=student_id
+        self.student_name=student_name
+        self.student_class=student_class
+student=Student('id', 'Aadhvika', 5)
+print(student.__dict__)
+
+output:
+{'student_id': 'id', 'student_name': 'Aadhvika', 'student_class': 5}
+*************************************************************************************************
+3.Write a simple Python class named Student and display its type. Also, display the __dict__ attribute keys and the value of the __module__ attribute of the Student class.
+class student:
+    pass
+print(type(stundent))
+print(student.__dict__.values())
+print(student.__module__)
+
+output:
+<class 'type'>
+dict_values(['__main__', <attribute '__dict__' of 'student' objects>, <attribute '__weakref__' of 'student' objects>, None])
+__main__
+*************************************************************************************************
+4.Write a Python class named Student with two attributes student_name, marks. Modify the attribute values of the said class and print the original and modified values of the said attributes.
+class student:
+    Student_name='Bindu'
+    Marks=100
+print(f"Student name is:{getattr(student, 'Student_name')}")
+print(f"Student marks are:{getattr(student, 'Marks')}")
+setattr(student, "Student_name", 'Aadhvika')
+print(f"New student name is:{getattr(student, 'Student_name')}")
+setattr(student, "Marks", 100)
+print(f"student marks:{getattr(student, 'Marks')}")
+
+output:
+Student name is:Bindu
+Student marks are:100
+New student name is:Aadhvika
+student marks:100
+*************************************************************************************************
+5.Write a Python class named Student with two attributes student_id, student_name. Add a new attribute student_class and display the entire attribute and the values of the class. Now remove the student_name attribute and display the entire attribute with values.
+class student:
+    student_name='Bindu'
+    marks=95
+print("Orginale values:")
+for i, value in student.__dict__.items():
+    if not i.startswith('_'):
+        print(f'{i} = {value}')
+
+print("After adding class to Student:")
+student.student_class = 'v'
+for i, value in student.__dict__.items():
+    if not i.startswith('_'):
+        print(f'{i}={value}')
+print("After removing the student name:")
+del student.student_name
+for i, value in student.__dict__.items():
+    if not i.startswith('_'):
+        print(f'{i} = {value}')
+        
+student.top_score= 'Highest Marks'
+for i, value in student.__dict__.items():
+    if not i.startswith('_'):
+        print(f'{i} = {value}')
+
+output:
+Orginale values:
+student_name = Bindu
+marks = 95
+After adding class to Student:
+student_name=Bindu
+marks=95
+student_class=v
+After removing the student name:
+marks = 95
+student_class = v
+marks = 95
+student_class = v
+top_score = Highest Marks
+*************************************************************************************************
+6.Write a Python class named Student with two instances student1, student2 and assign values to the instances' attributes. Print all the attributes of the student1, student2 instances with their values in the given format.
+
+class student:
+    pass
+student1=student()
+student2=student()
+student1.student_name='Aadhvika'
+student1.student_class='L.K.G'
+
+student2.student_name='Bindu'
+student2.student_class='x'
+
+students=[student1, student2]
+for i in students:
+    for Student in i.__dict__:
+        print(f'{Student} --> {getattr(i, Student)}')
+		
+Output:
+student_name --> Aadhvika
+student_class --> L.K.G
+student_name --> Bindu
+student_class --> x
+*************************************************************************************************
+7.Write a Python class to get all possible unique subsets from a set of distinct integers.
+
+class subset:
+    def sub_set(self, sset):
+        return self.sub_set_rec([], sorted(sset))
+    def sub_set_rec(self, current, sset):
+        if sset:
+            return self.sub_set_rec(current, sset[1:]) + self.sub_set_rec(current + [sset[0]], sset[1:])
+        return [current]
+print(subset().sub_set([4,5,6]))
+
+output:
+[[], [6], [5], [5, 6], [4], [4, 6], [4, 5], [4, 5, 6]]
+*************************************************************************************************
+How to count number of instances of a class in Python?
+class first:
+    count=0
+    def __init__(self):
+        first.count+=1
+f1=first()
+f2=first()
+f3=first()
+print(first.count)
+
+output: 3
+*************************************************************************************************
+
+
